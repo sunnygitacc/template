@@ -1,15 +1,16 @@
 package com.sunilkata.template.resources;
 
-import com.sunilkata.template.api.Saying;
 import com.codahale.metrics.annotation.Timed;
-import javafx.application.Application;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+import com.sunilkata.template.model.ModelObject;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
-import java.util.concurrent.atomic.AtomicLong;
+import javax.ws.rs.core.Response;
+import java.util.Locale;
 import java.util.Optional;
 
 /**
@@ -18,20 +19,11 @@ import java.util.Optional;
 @Path("/template")
 @Produces(MediaType.APPLICATION_JSON)
 public class TemplateResource {
-    private final String template;
-    private final String defaultName;
-    private final AtomicLong counter;
-
-    public TemplateResource(String template, String defaultName) {
-        this.template = template;
-        this.defaultName = defaultName;
-        this.counter = new AtomicLong();
-    }
 
     @GET
     @Timed
-    public Saying sayHello(@QueryParam("name") Optional<String> name) {
-        final String value = String.format(template, name.orElse(defaultName));
-        return new Saying(counter.incrementAndGet(), value);
+    public Response sayHello(@QueryParam("name") Optional<String> name) {
+        ModelObject o = new ModelObject("Test STring");
+        return Response.status(Response.Status.OK).entity(o).language(Locale.UK).type(MediaType.APPLICATION_JSON_TYPE).build();
     }
 }
