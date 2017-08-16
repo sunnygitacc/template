@@ -1,10 +1,9 @@
-package com.sunilkata.template.config;
+package com.sunilkata.template;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.google.inject.Injector;
-import com.google.inject.Key;
-import com.google.inject.name.Names;
 import com.hubspot.dropwizard.guice.GuiceBundle;
+import com.sunilkata.template.config.TemplateConfiguration;
 import com.sunilkata.template.config.guice.module.CustomInjectionModule;
 import com.wordnik.swagger.jaxrs.config.BeanConfig;
 import com.wordnik.swagger.jaxrs.listing.ApiListingResource;
